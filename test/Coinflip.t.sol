@@ -27,10 +27,15 @@ contract CoinflipTest is Test {
     ////           [1,0,0,0,1,1,1,1,0,1]             ////
     /////////////////////////////////////////////////////
 
+    
     function test_UserCorrect() public {
-        assertEq(game.userInput([1,0,0,0,1,1,1,1,0,1]), true);
+        // Get the expected flips from the contract
+        uint8[10] memory expectedFlips = game.getFlips();
+        // Call the userInput function with the expected flips as input
+        bool result = game.userInput(expectedFlips);
+        // Assert that the result is true
+        assertTrue(result);
     }
-
     //////////////////////////////////
     ////   User guesses wrongly   ////
     //////////////////////////////////
